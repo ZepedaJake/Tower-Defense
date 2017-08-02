@@ -47,6 +47,10 @@ public class levelMaster : MonoBehaviour {
     public int enemyCount = 0;
     private float lastSpawnTime = 0.0f;
 
+    //new tower menu
+    public Button circleButton;
+    public bool showMenu = false;
+
 
     //new wave system
     public int numberOfWaves;
@@ -70,9 +74,12 @@ public class levelMaster : MonoBehaviour {
         SetNextWave();
         StartNewWave();
 	}
-	
-	// Update is called once per frame
-	void Update ()
+    private void FixedUpdate()
+    {
+        RotateButton();
+    }
+    // Update is called once per frame
+    void Update ()
     {
         if(Input.GetKeyDown(KeyCode.F3))
         {
@@ -173,5 +180,27 @@ public class levelMaster : MonoBehaviour {
         Invoke("SetNextWave", 1f);
 
         Invoke("StartNewWave", 1f);
+    }
+
+    public void ShowMenu()
+    {
+        showMenu = !showMenu;
+        
+
+    }
+    public void RotateButton()
+    {
+        //rotate button to show options
+        //if showmenu, rotate till its at 180 degrees. else, rotate till 0
+        if(showMenu)
+        {
+            circleButton.transform.rotation = Quaternion.Lerp((circleButton.transform.rotation), Quaternion.Euler(0, 0, 180), Time.deltaTime * 3.5f);
+        }
+        else if(!showMenu)
+        {
+            circleButton.transform.rotation = Quaternion.Lerp((circleButton.transform.rotation), Quaternion.Euler(0, 0, 0), Time.deltaTime * 3.5f);
+        }
+       
+        
     }
 }

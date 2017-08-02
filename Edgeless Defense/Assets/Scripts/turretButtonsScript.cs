@@ -140,7 +140,7 @@ public class turretButtonsScript : MonoBehaviour {
                     lastObjectHit = hit.collider.gameObject;
                     defaultMaterial = lastObjectHit.GetComponent<Renderer>().material;
 
-                    //if spot is available make it green whn hovering
+                    //if spot is available make it green when hovering
                     if (lastObjectHit.tag == "openPlace")
                     {
                         lastObjectHit.GetComponent<Renderer>().material = hoverMaterial;
@@ -154,6 +154,7 @@ public class turretButtonsScript : MonoBehaviour {
 
                 if (Input.GetMouseButtonDown(0) && lastObjectHit)
                 {
+                    //if you click a panel that is open and you have the money place tower
                     focusedPlane = lastObjectHit.GetComponent<placementPlaneScript>();
                     if (focusedPlane.isOpen && theLevelMaster.money >= cashCost)
                     {
@@ -166,6 +167,7 @@ public class turretButtonsScript : MonoBehaviour {
                     }
                     else if (!focusedPlane.isOpen)
                     {
+                        //if you clikc an occupied space, allow upgrading.
                         if (upgradesOpen == false)
                         {
                            
@@ -210,7 +212,7 @@ public class turretButtonsScript : MonoBehaviour {
     //determines wether to show the turret pane or close it
    public void ShowUI ()
     {       
-        //open panel
+        //open panel after when camera is not moving
         if (turretsOpen == false && moveCamera == false)
         {
             turretsOpen = !turretsOpen;
@@ -222,7 +224,7 @@ public class turretButtonsScript : MonoBehaviour {
             rt.localPosition = new Vector3(rt.localPosition.x - 200, rt.localPosition.y, rt.localPosition.z);
 
         }
-        //close panel
+        //close panel when camera is not moving
         else if (turretsOpen == true && moveCamera == false)
         {
             turretsOpen = !turretsOpen;       
@@ -231,6 +233,7 @@ public class turretButtonsScript : MonoBehaviour {
             moveCamera = true;
             RectTransform rt = turretsPanel.GetComponent<RectTransform>();    
             rt.localPosition = new Vector3(rt.localPosition.x + 200, rt.localPosition.y, rt.localPosition.z);
+            //if you pressed a button before, change its color to white
             if (lastButton)
             {
                 lastButton.GetComponent<Button>().image.color = Color.white;
@@ -271,6 +274,7 @@ public class turretButtonsScript : MonoBehaviour {
 
     public void swapButtonColor()
     {
+        //if you pressed a button before, change its color to white
         if (lastButton)
         {
             lastButton.GetComponent<Button>().image.color = Color.white;
