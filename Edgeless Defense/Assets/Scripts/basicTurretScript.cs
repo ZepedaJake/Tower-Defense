@@ -6,7 +6,7 @@ adjust upgrade panel's position so tha the tower is in the corder not center or 
 add upgradable variable(Damage : Range : Accuracy : Fire Rate <reload> : Projectile Speed)
 try to get a preview of the selected tower at the top of the Tower panel UI**
     */
-public class basicTurretScript : MonoBehaviour {
+public class basicTurretScript : turretBaseScript {
      public GameObject projectile;
     public float reload = 1f;
 
@@ -84,7 +84,8 @@ public class basicTurretScript : MonoBehaviour {
         shotTimer = Time.time + reload;
         moveTimer = Time.time + shotDelay;
         CalculateError();
-        Instantiate(projectile, bulletSpawn.position, bulletSpawn.rotation);
-
+        GameObject bullet = Instantiate(projectile, bulletSpawn.position, bulletSpawn.rotation);
+        bullet.GetComponent<projectileScript>().target = target;
+        bullet.GetComponent<projectileScript>().damage = damage;
     }
 }
