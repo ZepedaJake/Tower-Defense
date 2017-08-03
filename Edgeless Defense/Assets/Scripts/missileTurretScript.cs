@@ -4,7 +4,7 @@ using System.Collections;
 public class missileTurretScript : turretBaseScript {
 
     public GameObject projectile;
-    public GameObject rangeSphere;
+    //public GameObject rangeSphere;
     
     //public float reload = 2f;
 
@@ -30,6 +30,7 @@ public class missileTurretScript : turretBaseScript {
     // Use this for initialization
     void Start()
     {
+        theLevelMaster = GameObject.FindWithTag("LevelMaster").GetComponent<levelMaster>();
         targetArray = new Transform[25];
 
         //variable from the base script
@@ -46,19 +47,17 @@ public class missileTurretScript : turretBaseScript {
         baseDamage = 100;
         baseSpeed = 15;
 
-        theLevelMaster = GameObject.FindWithTag("LevelMaster").GetComponent<levelMaster>();
+        
     }
 
     // Update is called once per frame
     void Update()
-    {
+    { 
+
         gameObject.transform.GetComponent<SphereCollider>().radius = range;
         rangeSphere.transform.localScale = new Vector3(range * 2, range * 2, range * 2);
 
-        
-        
-            rangeSphere.SetActive(theLevelMaster.debug);
-        
+        rangeSphere.SetActive(theLevelMaster.debug);
 
         if (target)
         {

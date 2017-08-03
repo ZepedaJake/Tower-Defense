@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 401020}
   - component: {fileID: 9633428}
   - component: {fileID: 11496610}
+  - component: {fileID: 135187646918836854}
   m_Layer: 0
   m_Name: Basic Bullet
   m_TagString: Untagged
@@ -205,6 +206,8 @@ MonoBehaviour:
   speed: 30
   range: 30
   distance: 0
+  damage: 0
+  target: {fileID: 0}
 --- !u!135 &13501266
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -292,3 +295,15 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 198974}
   m_IsPrefabParent: 1
+--- !u!135 &135187646918836854
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 198974}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.16666667
+  m_Center: {x: 0, y: 0, z: 0}

@@ -8,7 +8,7 @@ try to get a preview of the selected tower at the top of the Tower panel UI**
     */
 public class basicTurretScript : turretBaseScript {
      public GameObject projectile;
-    public float reload = 1f;
+    //public float reload = 1f;
 
     public float turnSpeed = 5f;
     public float shotDelay = .25f;
@@ -17,23 +17,41 @@ public class basicTurretScript : turretBaseScript {
     public Transform bulletSpawn;
     public Transform turretHead;
 
-    public int price = 50;
+   // public int price = 50;
 
     private float shotTimer;
     private float moveTimer;
     private Quaternion desiredRotation;
-    public float accuracy = 80;
+    //public float accuracy = 80;
     private float aimError;
     
     private Vector3 aimPoint;
     // Use this for initialization
     void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	if(target)
+        price = 50;
+        range = 7;
+        accuracy = 80;
+        reload = 1;
+        damage = 40;
+        speed = 0;
+
+        baseRange = 7;
+        baseReload = 1f;
+        baseAccuracy = 180;
+        baseDamage = 40;
+        baseSpeed = 0;
+
+        theLevelMaster = GameObject.FindWithTag("LevelMaster").GetComponent<levelMaster>();
+    }
+
+    // Update is called once per frame
+    void Update () {
+
+        gameObject.transform.GetComponent<SphereCollider>().radius = range;
+        rangeSphere.transform.localScale = new Vector3(range * 2, range * 2, range * 2);
+
+        rangeSphere.SetActive(theLevelMaster.debug);
+        if (target)
         {
             if (Time.time >= moveTimer)
             {

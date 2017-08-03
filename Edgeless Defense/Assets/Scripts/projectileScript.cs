@@ -35,7 +35,7 @@ public class projectileScript : MonoBehaviour {
         //Debug.Log("erg");
         if (other.gameObject.tag == "enemy")
         {
-            //Explode();
+            Destroy(gameObject);
             other.gameObject.SendMessage("Hit", damage, SendMessageOptions.DontRequireReceiver);
         }
     }

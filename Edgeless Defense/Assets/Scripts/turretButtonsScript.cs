@@ -106,7 +106,7 @@ public class turretButtonsScript : MonoBehaviour {
 	void Update () {
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "TestScene")
         {
-            Debug.Log(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+            //Debug.Log(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
         }
 
         upgradePanel.transform.eulerAngles = new Vector3( 90, 0, -mainCamera.transform.eulerAngles.y);
@@ -294,9 +294,10 @@ public class turretButtonsScript : MonoBehaviour {
     public void updateUpgradeUI()
     {
         focusedTower = focusedPlane.currentTower.GetComponent<turretBaseScript>();
+
         damage = focusedTower.damage; //focusedPlane.currentTower.GetComponent<turretBaseScript>().damage;
         damageUpgradeCost = focusedTower.price * (int)(Mathf.Pow(focusedTower.damageUpgrades, 1.5f ) + 1);
-        damageAddition = (int)((focusedTower.damageUpgrades + 1) * focusedTower.baseDamage * 1.2f);
+        damageAddition = (int)((focusedTower.damageUpgrades + 1) * focusedTower.baseDamage * .2f);
         damageFinal = damage + damageAddition;
 
         damageText.text = damage.ToString();
